@@ -29,8 +29,10 @@ class HypotesisTest():
     def varianzaCongiunta(self, v1, v2, g1, g2):
         campione1Corretto = len(g1) - 1
         campione2Corretto = len(g2) - 1
+        gradiDiLiberta = campione1Corretto + campione2Corretto
         VCongiunta = ((campione1Corretto*v1) + (campione2Corretto*v2))/(campione1Corretto + campione2Corretto)
         print('VCongiunta', VCongiunta)
+        print('gradiDiLiberta', gradiDiLiberta)
 
         return VCongiunta;
     def calcolaTStudent(self, m1, m2, VCongiunta, g1, g2):
@@ -39,7 +41,7 @@ class HypotesisTest():
         print('TStudent', TStudent)
         
 g1 = [25, 38, 21, 26, 24, 22, 27, 29,22, 24]  
-g2 = [24, 28, 20, 31, 22, 23, 21, 28, 21, 23]
+g2 = [24, 28, 20, 31, 22, 23, 21, 28, 21, 23, 1]
 #g1 = [0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0, 2]  
 #g2 = [1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4]
 ht = HypotesisTest()
