@@ -30,15 +30,18 @@ class HypotesisTest():
         campione1Corretto = len(g1) - 1
         campione2Corretto = len(g2) - 1
         VCongiunta = ((campione1Corretto*v1) + (campione2Corretto*v2))/(campione1Corretto + campione2Corretto)
-        print(VCongiunta)
+        print('VCongiunta', VCongiunta)
+
         return VCongiunta;
     def calcolaTStudent(self, m1, m2, VCongiunta, g1, g2):
         denominatore = (VCongiunta/len(g1)  + VCongiunta/len(g2))
         TStudent = (m1-m2)/(pow(denominatore, 0.5))
-        print(TStudent)
+        print('TStudent', TStudent)
         
-g1 = [0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0, 2]  
-g2 = [1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4]
+g1 = [25, 38, 21, 26, 24, 22, 27, 29,22, 24]  
+g2 = [24, 28, 20, 31, 22, 23, 21, 28, 21, 23]
+#g1 = [0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0, 2]  
+#g2 = [1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4]
 ht = HypotesisTest()
 ht.calcolaMedia1(g1)
 ht.calcolaMedia2(g2)
