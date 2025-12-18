@@ -29,10 +29,13 @@ class TestIpotesi ():
         self.campione = len(lista)
         self.denominatore = self.varianza/self.campione
         self.h = (media - 4)/(pow(self.denominatore, 0.5))
-        print(self.h)
+        print('numero campione', self.campione)
+        print('statistica test', self.h)
         
 
-lista = [1.1,3.1,4.2,4.6,5.0,5.2,5.3,6.5,8.4,9.6]
+#lista = [1.1,3.1,4.2,4.6,5.0,5.2,5.3,6.5,8.4,9.6]
+lista = [25, 38, 21, 26, 24, 22, 27, 29,22, 24]  
+
 inf = Inferenza(lista)
 inf.showList()
 
