@@ -1,50 +1,87 @@
 """Esercizio 1
-Sulla base dei seguenti valori ottenuti su un campione casuale proveniente da una popolazione normale
-1.1 3.1 4.2 4.6 5.0 5.2 5.3 6.5 8.4 9.6
-verificare l’ipotesi H0:mu =4 al livello di significatività mu=0.01
+lista1 = [4.29, 3.9, 3.783, 3.9, 4.095]
+lista2 = [3.12, 3.112, 3.12, 3.847, 3.081, 3.042, 3.742]
 """
 import numpy as np
 import math as math
 
 class TestIpotesi():
-    def showLista (self, lista):
-        print("lista:", lista)
+    def showLista1 (self, lista):
+        print("lista1:", lista)
+        return lista
 
-    def showMedia(self, lista):
+    def showLista2 (self, lista):
+        print("lista2:", lista)
+        return lista
+
+    def showMedia1(self, lista):
         media = np.mean(lista)
         print("media", media)
         return media
 
-    def showVarianza(self, lista):
+    def showMedia2(self, lista):
+        media = np.mean(lista)
+        print("media", media)
+        return media        
+
+    def showDeviazStand1(self, lista):
         devStandard = np.std(lista)
-        print("deviazione standard:", devStandard)
+        print("deviazione standard1:", devStandard)
         return devStandard
 
-    def showVarianzaCorretta(self, lista):
-        devStandardCorretta = np.std(lista, ddof=1)
-        print("deviazione standard corretta:", devStandardCorretta)
-        print("varianza corretta:", devStandardCorretta*devStandardCorretta)
-        return devStandardCorretta
+    def showDeviazStand2(self, lista):
+        devStandard = np.std(lista)
+        print("deviazione standard2:", devStandard)
+        return devStandard   
 
-    def showStatisticaTest(self, lista, media, mediaPopolazione, devStandardCorretta):
-        numeratore = media - mediaPopolazione
-        denominatore = math.sqrt(devStandardCorretta*devStandardCorretta/len(lista))
-        t = numeratore/denominatore
-        print("statistica test:", t)
-        return t
+    def showDevianza1(self, lista, media):
+        scarti_quadrati1 = (lista - media)**2
+        devianza = np.sum(scarti_quadrati1)
+        print("devianza1:", devianza)
+        return devianza
 
+    def showDevianza2(self, lista, media):
+        scarti_quadrati2 = (lista - media)**2
+        devianza = np.sum(scarti_quadrati2)
+        print("devianza2:", devianza)
+        return devianza
 
-    
+    def showVarianzaPonderata(self, dev1, dev2, lista1, lista2):
+        S_pooled = (dev1 + dev2)/(len(lista1)  + len(lista2))
+        print("S_pooled", S_pooled)
+        return S_pooled
+  
+    def showTest_T(self, media1, media2, S_pooled, lista1, lista2):
+        numeratore = (media1 - media2)
+        l1 = 1/len(lista1)
+        l2 = 1/len(lista2)
+        gradi_di_liberta = len(lista1) + len(lista2) - 2
+        denominatore = math.sqrt(S_pooled * (l1 + l2))
+        t_student = numeratore/denominatore
+        print("t student:", t_student)
+        print("Gradi di liberta:", gradi_di_liberta)
+        return t_student
+         
 
-lista1 = [1.1, 3.1, 4.2, 4.6, 5.0, 5.2, 5.3, 6.5, 8.4, 9.6]
-mediaPopolazione = 4
+lista1 = [4.29, 3.9, 3.783, 3.9, 4.095]
+lista2 = [3.12, 3.112, 3.12, 3.847, 3.081, 3.042, 3.742]
 
 test1 = TestIpotesi()
-test1.showLista(lista1)
-test1.showMedia(lista1)
-test1.showVarianza(lista1)
-test1.showVarianzaCorretta(lista1)
-test1.showStatisticaTest(lista1, test1.showMedia(lista1), mediaPopolazione, test1.showVarianzaCorretta(lista1))
+test1.showLista1(lista1)
+test1.showLista2(lista2)
+
+test1.showMedia1(lista1)
+test1.showMedia2(lista2)
+
+test1.showDeviazStand1(lista1)
+test1.showDeviazStand2(lista2)
+
+showDevianza1 = test1.showDevianza1(test1.showLista1(lista1), test1.showMedia1(lista1))
+showDevianza2 = test1.showDevianza2(test1.showLista2(lista2), test1.showMedia2(lista2))
+
+varianza_ponderata = test1.showVarianzaPonderata(showDevianza1, showDevianza2, test1.showLista1(lista1), test1.showLista2(lista2))
+
+test1.showTest_T(test1.showMedia1(lista1), test1.showMedia2(lista2), varianza_ponderata, lista1, lista2)
 
 
 
